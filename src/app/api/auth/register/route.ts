@@ -91,7 +91,7 @@ export async function POST(request: NextRequest) {
       data: {
         name,
         email,
-        password: passwordHash,
+        passwordHash: passwordHash,
         isVerified: false
       }
     })
