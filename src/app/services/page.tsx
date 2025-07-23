@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
+import { Header } from '@/components/Header'
+import { Footer } from '@/components/Footer'
 
 type ServiceType = 'website' | 'content-creation' | 'content-editing' | null
 
@@ -10,29 +11,10 @@ export default function Services() {
   const [selectedService, setSelectedService] = useState<ServiceType>(null)
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Navigation */}
-      <nav className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex">
-              <Link href="/" className="flex items-center">
-                <span className="text-2xl font-bold text-blue-600">MovaStudio</span>
-              </Link>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Link href="/login" className="text-gray-700 hover:text-blue-600">
-                Login
-              </Link>
-              <Link href="/register">
-                <Button variant="primary">Get Started</Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      <Header />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">
             Choose Your Service
@@ -134,6 +116,8 @@ export default function Services() {
           </div>
         )}
       </div>
+
+      <Footer />
     </div>
   )
 }
@@ -188,9 +172,11 @@ function WebsiteForm() {
           features: [], budget: '', timeline: '', description: '', currentWebsite: '', designPreferences: ''
         })
       } else {
+        console.error('Error submitting request')
         alert('There was an error submitting your request. Please try again.')
       }
-    } catch (error) {
+    } catch (err) {
+      console.error('Error submitting request:', err)
       alert('There was an error submitting your request. Please try again.')
     }
     
@@ -201,7 +187,7 @@ function WebsiteForm() {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-900 mb-2">
             Full Name *
           </label>
           <input
@@ -215,7 +201,7 @@ function WebsiteForm() {
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-900 mb-2">
             Email Address *
           </label>
           <input
@@ -231,7 +217,7 @@ function WebsiteForm() {
 
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-900 mb-2">
             Company Name
           </label>
           <input
@@ -244,7 +230,7 @@ function WebsiteForm() {
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-900 mb-2">
             Phone Number
           </label>
           <input
@@ -258,7 +244,7 @@ function WebsiteForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-900 mb-2">
           Type of Website *
         </label>
         <select
@@ -279,7 +265,7 @@ function WebsiteForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-900 mb-2">
           Required Features (select all that apply)
         </label>
         <div className="grid md:grid-cols-2 gap-2">
@@ -299,7 +285,7 @@ function WebsiteForm() {
 
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-900 mb-2">
             Budget Range *
           </label>
           <select
@@ -319,7 +305,7 @@ function WebsiteForm() {
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-900 mb-2">
             Timeline *
           </label>
           <select
@@ -339,7 +325,7 @@ function WebsiteForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-900 mb-2">
           Current Website (if any)
         </label>
         <input
@@ -353,7 +339,7 @@ function WebsiteForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-900 mb-2">
           Project Description *
         </label>
         <textarea
@@ -368,7 +354,7 @@ function WebsiteForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-900 mb-2">
           Design Preferences
         </label>
         <textarea
@@ -438,9 +424,11 @@ function ContentCreationForm() {
           description: '', existingContent: '', brandGuidelines: ''
         })
       } else {
+        console.error('Error submitting request')
         alert('There was an error submitting your request. Please try again.')
       }
-    } catch (error) {
+    } catch (err) {
+      console.error('Error submitting request:', err)
       alert('There was an error submitting your request. Please try again.')
     }
     
@@ -451,7 +439,7 @@ function ContentCreationForm() {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-900 mb-2">
             Full Name *
           </label>
           <input
@@ -465,7 +453,7 @@ function ContentCreationForm() {
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-900 mb-2">
             Email Address *
           </label>
           <input
@@ -481,7 +469,7 @@ function ContentCreationForm() {
 
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-900 mb-2">
             Company Name
           </label>
           <input
@@ -494,7 +482,7 @@ function ContentCreationForm() {
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-900 mb-2">
             Phone Number
           </label>
           <input
@@ -508,7 +496,7 @@ function ContentCreationForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-900 mb-2">
           Type of Content *
         </label>
         <select
@@ -531,7 +519,7 @@ function ContentCreationForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-900 mb-2">
           Content Purpose *
         </label>
         <select
@@ -552,7 +540,7 @@ function ContentCreationForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-900 mb-2">
           Target Audience *
         </label>
         <textarea
@@ -568,7 +556,7 @@ function ContentCreationForm() {
 
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-900 mb-2">
             Quantity Needed *
           </label>
           <input
@@ -583,7 +571,7 @@ function ContentCreationForm() {
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-900 mb-2">
             Budget Range *
           </label>
           <select
@@ -604,7 +592,7 @@ function ContentCreationForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-900 mb-2">
           Timeline *
         </label>
         <select
@@ -623,7 +611,7 @@ function ContentCreationForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-900 mb-2">
           Project Description *
         </label>
         <textarea
@@ -638,7 +626,7 @@ function ContentCreationForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-900 mb-2">
           Existing Content Examples
         </label>
         <textarea
@@ -652,7 +640,7 @@ function ContentCreationForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-900 mb-2">
           Brand Guidelines
         </label>
         <textarea
@@ -722,9 +710,11 @@ function ContentEditingForm() {
           budget: '', timeline: '', description: '', styleGuide: ''
         })
       } else {
+        console.error('Error submitting request')
         alert('There was an error submitting your request. Please try again.')
       }
-    } catch (error) {
+    } catch (err) {
+      console.error('Error submitting request:', err)
       alert('There was an error submitting your request. Please try again.')
     }
     
@@ -735,7 +725,7 @@ function ContentEditingForm() {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-900 mb-2">
             Full Name *
           </label>
           <input
@@ -749,7 +739,7 @@ function ContentEditingForm() {
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-900 mb-2">
             Email Address *
           </label>
           <input
@@ -765,7 +755,7 @@ function ContentEditingForm() {
 
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-900 mb-2">
             Company Name
           </label>
           <input
@@ -778,7 +768,7 @@ function ContentEditingForm() {
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-900 mb-2">
             Phone Number
           </label>
           <input
@@ -792,7 +782,7 @@ function ContentEditingForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-900 mb-2">
           Type of Content to Edit *
         </label>
         <select
@@ -815,7 +805,7 @@ function ContentEditingForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-900 mb-2">
           Type of Editing Needed *
         </label>
         <select
@@ -836,7 +826,7 @@ function ContentEditingForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-900 mb-2">
           Content Length *
         </label>
         <select
@@ -856,7 +846,7 @@ function ContentEditingForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-900 mb-2">
           Current Content *
         </label>
         <textarea
@@ -871,7 +861,7 @@ function ContentEditingForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-900 mb-2">
           Goals for Editing *
         </label>
         <textarea
@@ -887,7 +877,7 @@ function ContentEditingForm() {
 
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-900 mb-2">
             Budget Range *
           </label>
           <select
@@ -907,7 +897,7 @@ function ContentEditingForm() {
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-900 mb-2">
             Timeline *
           </label>
           <select
@@ -928,7 +918,7 @@ function ContentEditingForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-900 mb-2">
           Additional Details
         </label>
         <textarea
@@ -942,7 +932,7 @@ function ContentEditingForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-900 mb-2">
           Style Guide/Preferences
         </label>
         <textarea

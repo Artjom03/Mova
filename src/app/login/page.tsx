@@ -1,27 +1,46 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
+import { Header } from '@/components/Header'
+import { Footer } from '@/components/Footer'
+import { useAuth } from '@/lib/auth'
 
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+  const { login } = useAuth()
+  const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
+    setError('')
     
-    // TODO: Implement login logic with NextAuth
-    console.log('Login attempt:', { email, password })
-    
-    setIsLoading(false)
+    try {
+      const result = await login(email, password)
+      if (result.success) {
+        router.push('/profile')
+      } else {
+        setError(result.error || 'Login failed. Please try again.')
+      }
+    } catch (error) {
+      setError('Login failed. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      <Header />
+      
+      <div className="flex-1 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-8">
         <div>
           <Link href="/" className="flex justify-center">
             <span className="text-3xl font-bold text-blue-600">MovaStudio</span>
@@ -31,10 +50,16 @@ export default function Login() {
           </h2>
         </div>
         
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded">
+            {error}
+          </div>
+        )}
+        
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
-              <label htmlFor="email" className="sr-only">
+              <label htmlFor="email" className="sr-only my-2">
                 Email address
               </label>
               <input
@@ -50,7 +75,7 @@ export default function Login() {
               />
             </div>
             <div>
-              <label htmlFor="password" className="sr-only">
+              <label htmlFor="password" className="sr-only my-2">
                 Password
               </label>
               <input
@@ -81,11 +106,14 @@ export default function Login() {
 
           <div className="text-center">
             <Link href="/register" className="text-blue-600 hover:text-blue-500">
-              Don't have an account? Sign up
+              Don&apos;t have an account? Sign up
             </Link>
           </div>
         </form>
+        </div>
       </div>
+
+      <Footer />
     </div>
   )
 }

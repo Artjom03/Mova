@@ -153,7 +153,7 @@ export default function Register() {
                     type="text"
                     autoComplete="name"
                     required
-                    className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+                    className="mt-1 w-full font-black px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
                     placeholder="John Doe"
                     value={formData.name}
                     onChange={handleChange}
@@ -170,7 +170,7 @@ export default function Register() {
                     type="email"
                     autoComplete="email"
                     required
-                    className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+                    className="mt-1 w-full font-black px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
                     placeholder="john@example.com"
                     value={formData.email}
                     onChange={handleChange}
@@ -187,7 +187,7 @@ export default function Register() {
                     type="password"
                     autoComplete="new-password"
                     required
-                    className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+                    className="mt-1 w-full font-black px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
                     placeholder="Minimum 8 characters"
                     value={formData.password}
                     onChange={handleChange}
@@ -207,7 +207,7 @@ export default function Register() {
                     type="password"
                     autoComplete="new-password"
                     required
-                    className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+                    className="mt-1 font-black w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
                     placeholder="Repeat your password"
                     value={formData.confirmPassword}
                     onChange={handleChange}
@@ -243,7 +243,7 @@ export default function Register() {
                   type="text"
                   required
                   maxLength={6}
-                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-center text-xl font-mono text-black"
+                  className="mt-1 w-full px-3 py-2 border font-black border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-center text-xl font-mono text-black"
                   placeholder="000000"
                   value={verificationCode}
                   onChange={(e) => setVerificationCode(e.target.value)}
