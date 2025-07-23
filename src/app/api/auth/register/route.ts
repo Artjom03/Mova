@@ -56,11 +56,13 @@ export async function POST(request: NextRequest) {
           where: { email },
           update: {
             code: verificationCode,
+            type: 'EMAIL_VERIFICATION',
             expiresAt: new Date(Date.now() + 10 * 60 * 1000) // 10 minutes
           },
           create: {
             email,
             code: verificationCode,
+            type: 'EMAIL_VERIFICATION',
             expiresAt: new Date(Date.now() + 10 * 60 * 1000) // 10 minutes
           }
         })
@@ -101,6 +103,7 @@ export async function POST(request: NextRequest) {
       data: {
         email,
         code: verificationCode,
+        type: 'EMAIL_VERIFICATION',
         expiresAt: new Date(Date.now() + 10 * 60 * 1000) // 10 minutes
       }
     })
